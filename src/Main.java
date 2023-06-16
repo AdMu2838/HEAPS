@@ -4,6 +4,10 @@ public class Main {
     public static void main(String[] args) {
         PriorityQueueHeap<String> lista = new PriorityQueueHeap<>();
         lista.enqueue("Agustin", 2);
+        lista.enqueue("Jorge", 1);
+        lista.enqueue("Joel", 3);
+        System.out.println("El elemento de mas alta prioridad es: "+ lista.front());
+        System.out.println("El elemento de mas baja prioridad es: "+ lista.back());
 
     }
 }

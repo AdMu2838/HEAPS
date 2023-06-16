@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class Heap <T extends Comparable<T>>{
     private ArrayList<T> heap;
@@ -26,5 +27,16 @@ public class Heap <T extends Comparable<T>>{
         T temp = heap.get(i);
         heap.set(i, heap.get(j));
         heap.set(j, temp);
+    }
+    //retorna la raiz del heap
+    public T raiz() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("El heap está vacío");
+        }
+        return heap.get(0);
+    }
+
+    public boolean isEmpty() {
+        return heap.isEmpty();
     }
 }
