@@ -28,4 +28,11 @@ public class PriorityQueueHeap<T extends Comparable<T>>{
         ArrayList<PrioridadItem<T>> items = heap.getHeap();
         return items.get(items.size() - 1).getItem();
     }
+
+    public T dequeue() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("La cola de prioridad está vacía");
+        }
+        return heap.eliminar().getItem();
+    }
 }
