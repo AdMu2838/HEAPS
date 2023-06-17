@@ -23,6 +23,40 @@ public class Heap <T extends Comparable<T>>{
             padre = (index - 1) / 2;
         }
     }
+
+    public T eliminar() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("El heap está vacío");
+        }
+
+        T root = heap.get(0);
+        T ultimoItem = heap.remove(heap.size() - 1); // Remueve el último elemento del ArrayList
+        if (!isEmpty()) {
+            heap.set(0, ultimoItem); // Reemplaza la raíz con el último elemento del heap
+            eliminar(0);
+        }
+        return root; // Retorna el elemento raíz removido
+    }
+
+    private void eliminar(int index) {
+        int leftHijo = 2 * index + 1;
+        int rightHijo = 2 * index + 2;
+        int mayor = index;
+        // Actualiza el índice del mayor elemento si el hijo izquierdo es mayor
+        if (leftHijo < heap.size() && heap.get(leftHijo).compareTo(heap.get(mayor)) > 0) {
+            mayor = leftHijo;
+        }
+
+        if (rightHijo < heap.size() && heap.get(rightHijo).compareTo(heap.get(mayor)) > 0) {
+            mayor = rightHijo; // Actualiza el índice del mayor elemento si el hijo derecho es mayor
+        }
+
+        if (mayor != index) {
+            intercambio(index, mayor);
+            eliminar(mayor); //
+        }
+    }
+
     private void intercambio(int i, int j) {
         T temp = heap.get(i);
         heap.set(i, heap.get(j));
